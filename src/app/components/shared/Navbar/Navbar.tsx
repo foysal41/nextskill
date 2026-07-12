@@ -1,0 +1,56 @@
+'use client'
+import Image from 'next/image';
+import React, { useState } from 'react'
+import logo from "@/images/next-skill-logo.png"
+import Link from 'next/link';
+import { NAVLINKS } from '../../../../../constant/Navlinks';
+import avatar from "@/images/avatar.webp"
+
+
+interface NavProps {
+  openNav: () => void;
+}
+
+const user = {
+  id: 1,
+  name: "John Doe",
+  image: avatar, 
+};
+
+export const Navbar = ({openNav}:NavProps):React.ReactElement => {
+  const [navBg, setNavBg] = useState<boolean>(false)
+
+ 
+
+  return (
+    <header className={`fixed top-0 left-0 z-50 h-[12vh] w-full transition-all ${navBg?"bg-white shadow-md" : "bg-transparent"} `}>
+      <div className='flex items-center justify-between gap-3 max-w-7xl mx-auto my-[2rem] '>
+        <div className=''>
+            <Link href={'/'}><Image src={logo} alt='NextSkill_Logo' height={50} width={50} className='cursor-pointer md:w-50 '></Image></Link>
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className='hidden lg:flex space-x-5 '>
+          {NAVLINKS.map((link) => (
+            <Link key={link.id} href={link.url} className='relative text-gray-700 transition-all duration-300 hover:text-[#FE710D] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#FE710D] after:transition-all after:duration-300 hover:after:w-full '> {link.label}</Link>
+          ))}
+        </nav>
+
+
+        {/* Right  */}
+        <div>
+          {user? (
+            <div className='flex items-center justify-between gap-4'>
+              <Image src={user.image} alt={user.name} height={42} width={42} className='rounded-full border-3 border-[#FE7310] object-cover'></Image>
+              <button className='bg-[#FE7310] px-6 py-3 text-white font-bold rounded-md'>
+                logout
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
+    </header>
+  )
+}

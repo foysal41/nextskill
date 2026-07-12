@@ -1,0 +1,69 @@
+export const NAVLINKS = [
+  {
+    id: 1,
+    label: "Home",
+    url: "/",
+  },
+
+  {
+    id: 2,
+    label: "Explore",
+    url: "/explore",
+    submenu: [
+      {
+        label: "All Courses",
+        url: "/explore",
+      },
+      {
+        label: "Popular Courses",
+        url: "/explore/popular",
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    label: "Categories",
+    url: "/categories",
+    submenu: [
+      {
+        label: "Web Development",
+        url: "/categories/web-development",
+      },
+      {
+        label: "UI/UX Design",
+        url: "/categories/ui-ux",
+      },
+    ],
+  },
+
+  {
+    id: 4,
+    label: "Add Course",
+    url: "/courses/add",
+  },
+
+  {
+    id: 5,
+    label: "Manage Courses",
+    url: "/courses/manage",
+  },
+
+  {
+    id: 6,
+    label: "Blog",
+    url: "/blog",
+  },
+
+  {
+    id: 7,
+    label: "About",
+    url: "/about",
+  },
+
+  {
+    id: 8,
+    label: "Contact",
+    url: "/contact",
+  },
+];
