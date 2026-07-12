@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const Hero = () => {
   return (
-    <section className=" py-[10vh] md:py-[20vh] max-w-[1500px] mx-auto px-[1rem] ">
+    <section className=" pt-[10vh] md:pt-[20vh] max-w-[1500px] mx-auto px-[1rem] ">
       <div className=" flex flex-col md:flex-row  items-center ">
         {/* left content */}
         <div className="">
@@ -41,12 +41,11 @@ export const Hero = () => {
 
 
         {/* Right Content  */}
-        <div className="relative">
+        <div className="">
           <Image
             src={hero_right_bg}
             alt="Hero Image"
-            priority
-            className="w-full max-w-xl"
+            className="w-full max-w-6xl"
           />
           
         </div>
