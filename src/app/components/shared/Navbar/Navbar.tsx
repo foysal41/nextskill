@@ -25,7 +25,7 @@ export const Navbar = ({openNav}:NavProps):React.ReactElement => {
 
   return (
     <header className={`fixed top-0 left-0 z-50 h-[12vh] w-full transition-all ${navBg?"bg-white shadow-md" : "bg-transparent"} `}>
-      <div className='flex items-center justify-between gap-3 max-w-7xl mx-auto my-[2rem] px-[1rem] '>
+      <div className='flex items-center justify-between gap-3 max-w-[1500px] mx-auto my-[2rem] px-[1rem] '>
         <div className=''>
             <Link href={'/'}><Image src={logo} alt='NextSkill_Logo' height={100} width={100} className='cursor-pointer md:w-50 '></Image></Link>
         </div>
