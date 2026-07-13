@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Hero } from "./components/homepage-sections/Hero";
 import { SearchBar } from "./components/homepage-sections/SearchBar";
 import { Categories } from "./components/homepage-sections/Categories";

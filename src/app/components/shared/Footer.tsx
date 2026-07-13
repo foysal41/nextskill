@@ -15,7 +15,7 @@ export const Footer = (): React.ReactElement => {
     <footer className="bg-[#0F172A] text-white mt-20">
       <div className="max-w-[1500px] mx-auto px-4 py-14">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
           {/* Company */}
           <div>
@@ -50,19 +50,7 @@ export const Footer = (): React.ReactElement => {
             </ul>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">
-              Quick Links
-            </h3>
-
-            <ul className="space-y-3 text-gray-400">
-              <li><Link href="/">Explore Courses</Link></li>
-              <li><Link href="/">Add Course</Link></li>
-              <li><Link href="/">Pricing</Link></li>
-              <li><Link href="/">Support</Link></li>
-            </ul>
-          </div>
+       
 
           {/* Contact */}
           <div>
@@ -79,12 +67,12 @@ export const Footer = (): React.ReactElement => {
 
               <div className="flex gap-3">
                 <BiPhone className="text-xl text-[#FE7310]" />
-                <span>+880 1700-000000</span>
+                <span>+880 170-1035-894</span>
               </div>
 
               <div className="flex gap-3">
                 <BiMap className="text-xl text-[#FE7310]" />
-                <span>Dhaka, Bangladesh</span>
+                <span>Khulna, Bangladesh</span>
               </div>
 
             </div>
