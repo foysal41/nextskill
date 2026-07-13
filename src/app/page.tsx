@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Hero } from "./components/homepage-sections/Hero";
 import { SearchBar } from "./components/homepage-sections/SearchBar";
 import { Categories } from "./components/homepage-sections/Categories";
+import { FeaturedCourses } from "./components/homepage-sections/FeaturedCourses";
 
 export default function Home() {
   return (
@@ -9,6 +10,8 @@ export default function Home() {
      <Hero></Hero>
      <SearchBar></SearchBar>
      <Categories></Categories>
+     <FeaturedCourses></FeaturedCourses>
+     
     </div>
   );
 }

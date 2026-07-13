@@ -59,12 +59,13 @@ export const Categories = () => {
   return (
     <div className="max-w-[1500px]  mx-auto py-[50px] px-[1rem]">
       {/* Heading */}
-      <div>
-        <h2 className="font-bold text-3xl">Popular Categories</h2>
+      <div className="mb-4">
+        <h2 className="font-bold text-lg md:text-3xl">Popular Categories</h2>
+       
       </div>
 
       {/* icon card */}
-      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-3 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-3 ">
         {categoriesData.map((cate) => {
           const Icon = cate.icon;
           return (
