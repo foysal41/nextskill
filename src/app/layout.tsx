@@ -4,6 +4,8 @@ import "./globals.css";
 import { Navbar } from "./components/shared/Navbar/Navbar";
 import { WrapperNav } from "./components/shared/Navbar/WrapperNav";
 import Footer from "./components/shared/Footer";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +35,8 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <WrapperNav></WrapperNav>
         {children}
+          <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop closeOnClick pauseOnHover draggable theme="light"
+  />
         <Footer></Footer>
         </body>
     </html>
