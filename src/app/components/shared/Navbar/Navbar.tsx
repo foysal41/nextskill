@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from "@/images/next-skill-logo.png"
 import Link from 'next/link';
 import { NAVLINKS } from '../../../../../constant/Navlinks';
@@ -21,11 +21,24 @@ const user = {
 export const Navbar = ({openNav}:NavProps):React.ReactElement => {
   const [navBg, setNavBg] = useState<boolean>(false)
 
- 
+ useEffect(() => {
+  const handleScroll = () => {
+    if(window.scrollY > 80) {
+      setNavBg(true);
+    }else{
+      setNavBg(false)
+    }
+  };
+
+  window.addEventListener("scroll" , handleScroll);
+  return() => {
+    window.removeEventListener("scroll" , handleScroll)
+  }
+ }, [])
 
   return (
-    <header className={`fixed top-0 left-0 z-50 h-[12vh] w-full transition-all ${navBg?"bg-white shadow-md" : "bg-transparent"} `}>
-      <div className='flex items-center justify-between gap-3 max-w-[1500px] mx-auto my-[2rem] px-[1rem] '>
+    <header className={`fixed top-0 left-0 z-50 md:h-[12vh] w-full transition-all ${navBg?"bg-white shadow-md" : "bg-transparent"} `}>
+      <div className='flex items-center justify-between gap-3 max-w-[1500px] mx-auto my-[1rem] md:my-[2rem] px-[1rem] '>
         <div className=''>
             <Link href={'/'}><Image src={logo} alt='NextSkill_Logo' height={100} width={100} className='cursor-pointer md:w-50 '></Image></Link>
         </div>
@@ -62,7 +75,7 @@ export const Navbar = ({openNav}:NavProps):React.ReactElement => {
           )}
           </div>
 
-          <HiBars3BottomRight onClick={openNav} className='lg:hidden text-black'></HiBars3BottomRight>
+          <HiBars3BottomRight size={30} onClick={openNav} className='lg:hidden text-black'></HiBars3BottomRight>
         </div>
       </div>
     </header>
