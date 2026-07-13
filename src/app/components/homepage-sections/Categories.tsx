@@ -55,7 +55,7 @@ export const categoriesData: Category[] = [
   },
 ];
 
-export const Categories = () => {
+export const Categories = ():React.ReactElement => {
   return (
     <div className="max-w-[1500px]  mx-auto py-[50px] px-[1rem]">
       {/* Heading */}

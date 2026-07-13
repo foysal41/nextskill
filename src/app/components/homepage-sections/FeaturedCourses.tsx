@@ -69,7 +69,7 @@ export const coursesData: Course[] = [
     price: 44.99,
   },
 ];
-export const FeaturedCourses = () => {
+export const FeaturedCourses = ():React.ReactElement => {
   return (
     <div className='max-w-[1500px]  mx-auto py-[50px] px-[1rem]'>
       {/* Heading */}

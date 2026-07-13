@@ -3,7 +3,7 @@ import React from "react";
 import hero_right_bg from "@/images/hero-right-bg.webp"
 import Image from "next/image";
 
-export const Hero = () => {
+export const Hero = (): React.ReactElement => {
   return (
     <section className=" h-[70vh] flex items-center max-w-[1500px] mx-auto px-[1rem] ">
       <div className=" flex flex-col md:flex-row  items-center ">

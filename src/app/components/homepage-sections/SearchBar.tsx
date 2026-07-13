@@ -1,7 +1,7 @@
 import React from 'react'
 import { FiSearch } from 'react-icons/fi'
 
-export const SearchBar = () => {
+export const SearchBar = ():React.ReactElement => {
   return (
     <section className='px-[1rem]'>
       <div className='max-w-[1500px] mx-auto bg-white shadow-lg rounded-2xl p-4 '>
