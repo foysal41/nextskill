@@ -3,7 +3,7 @@ import { FiSearch } from 'react-icons/fi'
 
 export const SearchBar = () => {
   return (
-    <section>
+    <section className='px-[1rem]'>
       <div className='max-w-[1500px] mx-auto bg-white shadow-lg rounded-2xl p-4 '>
         <div className='grid grid-cols-1 gap-3 md:grid-cols-6 '>
           {/* Search */}
