@@ -1,29 +1,67 @@
-'use client'
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { FiPlus, FiUploadCloud } from "react-icons/fi";
 import { GiChecklist } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import "react-quill-new/dist/quill.snow.css";
-import galleryImg from "@/images/course-1.png";
 import { toast } from "react-toastify";
-
-const galleryImages = [galleryImg, galleryImg, galleryImg, galleryImg];
+import { uploadImage } from "@/app/lib/uploadImage";
 
 const AddCourse = () => {
+  const [thumbUrl, setThumbUrl] = useState<string>("");
+  const [isUploading, setIsuploading] = useState<boolean>(false);
+  const [galleryUrls, setGalleryUrls] = useState<string[]>([]);
+  const [isGalleryImageUploading, setIsGalleryImageUploading] =
+    useState<boolean>(false);
 
+  const handleThumbUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-    const handleThumbUpload = async (e:React.ChangeEvent<HTMLInputElement> ) => {
-        const thumb = e.target.files?.[0]
-        
-        if(!thumb) {
-            toast.error("Something went wrong!");
-            return;
-        }
+    setIsuploading(true);
+
+    const imageUrl = await uploadImage(file);
+
+    if (imageUrl) {
+      setThumbUrl(imageUrl);
     }
 
+    setIsuploading(false);
+  };
 
+  const handleGalleryImageUpload = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
 
+    setIsGalleryImageUploading(true);
+
+    try {
+      const fileArray = Array.from(files);
+      const uplaodedUrls = await Promise.all(
+        fileArray.map((file) => uploadImage(file)),
+      );
+
+      const validUrls = uplaodedUrls.filter(
+        (url): url is string => url !== null,
+      );
+      setGalleryUrls((prev) => [...prev, ...validUrls]);
+    } finally {
+      setIsGalleryImageUploading(false);
+    }
+  };
+
+  const removeGalleryImage = (index: number) => {
+  setGalleryUrls((prevGallery) =>
+    prevGallery.filter((_, i) => i !== index)
+  );
+
+  toast.success("Image removed successfully");
+};
+
+ 
   return (
     <section className="mt-24">
       <div className="max-w-[1500px] mx-auto px-[1rem]">
@@ -308,7 +346,7 @@ const AddCourse = () => {
                     htmlFor="thumbnail"
                     className="border-2 border-dashed border-gray-300 rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:border-blue-500 transition"
                   >
-                    <FiUploadCloud  className="text-5xl text-blue-600" />
+                    <FiUploadCloud className="text-5xl text-blue-600" />
 
                     <h4 className="mt-3 font-semibold">
                       Click to upload or drag and drop
@@ -326,25 +364,31 @@ const AddCourse = () => {
 
                 {/* Preview */}
 
-                <div className="mt-6">
-                  <h4 className="font-semibold mb-3">Thumbnail Preview</h4>
-
+                {thumbUrl ? (
                   <Image
-                    src={galleryImg}
-                    alt="Preview"
-                    className="rounded-lg object-cover w-full h-56"
+                    src={thumbUrl}
+                    alt="Thumbnail"
+                    width={500}
+                    height={300}
+                    className="rounded-lg w-full h-56 object-cover mt-3"
                   />
-                </div>
+                ) : (
+                  <div className="h-56 w-full rounded-lg bg-gray-100 flex items-center justify-center text-gray-400">
+                    No Thumbnail Selected
+                  </div>
+                )}
               </div>
 
               {/* Gallery */}
 
               <div className="rounded-xl bg-white shadow-lg p-5">
                 {/* Heading */}
-
+                   <h3 className="text-xl font-bold">
+                  Course Other Images <span className="text-red-500">*</span>
+                </h3>  
                 {/* Gallery Preview */}
 
-                {/* Hidden Input এখানে */}
+                {/* Hidden Input */}
                 <input
                   type="file"
                   id="gallery"
@@ -352,6 +396,7 @@ const AddCourse = () => {
                   accept="image/*"
                   multiple
                   className="hidden"
+                  onChange={handleGalleryImageUpload}
                 />
 
                 {/* Upload Button */}
@@ -369,6 +414,41 @@ const AddCourse = () => {
                     You can add up to 5 images
                   </p>
                 </label>
+
+                {/* Gallery Preview */}
+
+                {galleryUrls.length > 0 && (
+                  <div className="mt-6">
+                    <h4 className="font-semibold mb-3">Gallery Preview</h4>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      {galleryUrls.map((url, index) => (
+                        <div
+                          key={index}
+                          className="relative rounded-lg overflow-hidden"
+                        >
+                          <Image
+                            src={url}
+                            alt={`Gallery ${index + 1}`}
+                            width={200}
+                            height={150}
+                            className="h-24 w-full object-cover rounded-lg"
+                          />
+
+                          {/* Remove Button */}
+
+                          <button
+                            type="button"
+                            onClick={() => removeGalleryImage(index)}
+                            className="absolute top-1 right-1 bg-white rounded-full p-1 shadow hover:bg-red-500 hover:text-white transition"
+                          >
+                            <IoClose size={14} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
