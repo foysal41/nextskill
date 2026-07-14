@@ -11,4 +11,5 @@ export interface Course {
   outcomes: string[];
   thumbnail: string;
   gallery: string[];
+  status: "Published" | "Draft";
 }

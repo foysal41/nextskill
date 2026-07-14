@@ -46,7 +46,7 @@ export const NAVLINKS = [
   {
     id: 5,
     label: "Manage Courses",
-    url: "/courses/manage",
+    url: "/courses/manage-courses",
   },
 
 
