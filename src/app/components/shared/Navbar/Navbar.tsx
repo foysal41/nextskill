@@ -14,8 +14,6 @@ interface NavProps {
   openNav: () => void;
 }
 
-
-
 export const Navbar = ({openNav}:NavProps):React.ReactElement => {
 
   const [navBg, setNavBg] = useState<boolean>(false)
