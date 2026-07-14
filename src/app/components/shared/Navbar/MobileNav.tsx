@@ -18,6 +18,11 @@ export const MobileNav = ({
   const { data: session, isPending } = useSession();
   const user = session?.user;
 
+   const filteredLinks = NAVLINKS.filter((link) => {
+    if (link.private && !user) return false;
+    return true;
+  });
+
   const handleLogout = async() => {
     await signOut()
   }
@@ -51,7 +56,7 @@ export const MobileNav = ({
 
         {/* Navigation */}
         <nav className="flex flex-col px-2 py-5">
-          {NAVLINKS.map((link) => (
+          {filteredLinks.map((link) => (
             <Link
               key={link.id}
               href={link.url}

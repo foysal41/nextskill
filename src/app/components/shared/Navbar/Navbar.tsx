@@ -20,6 +20,13 @@ export const Navbar = ({openNav}:NavProps):React.ReactElement => {
   const {data:session, isPending} = useSession()
   const user = session?.user
 
+
+
+   const filteredLinks = NAVLINKS.filter((link) => {
+  if (link.private && !user) return false;
+  return true;
+});
+
 const handleLogout = async () => {
   await signOut()
 }
@@ -38,6 +45,9 @@ const handleLogout = async () => {
   }
  }, [])
 
+
+
+
   return (
     <header className={`fixed top-0 left-0 z-50 md:h-[12vh] w-full transition-all ${navBg?"bg-white shadow-md" : "bg-transparent"} `}>
       <div className='flex items-center justify-between gap-3 max-w-[1500px] mx-auto my-[1rem] md:my-[2rem] px-[1rem] '>
@@ -47,7 +57,7 @@ const handleLogout = async () => {
 
         {/* Desktop Navigation */}
         <nav className='hidden lg:flex space-x-5 '>
-          {NAVLINKS.map((link) => (
+          {filteredLinks.map((link) => (
             <Link key={link.id} href={link.url} className='relative text-gray-700 transition-all duration-300 hover:text-[#FE710D] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#FE710D] after:transition-all after:duration-300 hover:after:w-full '> {link.label}</Link>
           ))}
         </nav>
@@ -65,11 +75,11 @@ const handleLogout = async () => {
             </div>
           ) : (
             <div className='flex items-center justify-between gap-3'>
-              <Link href={"/auth/signup"}><button className='bg-transprent border border-[#FE7310] px-6 py-3 text-[#FE7310] font-bold rounded-md'>
+              <Link href={"/auth/signup"}><button className='bg-transprent border cursor-pointer border-[#FE7310] px-6 py-3 text-[#FE7310] font-bold rounded-md'>
                 SignUp
               </button></Link>
 
-              <Link href={"auth/login"}><button className='bg-[#FE7310] px-6 py-3 text-white font-bold rounded-md'>
+              <Link href={"auth/login"}><button className='bg-[#FE7310] px-6 py-3 cursor-pointer text-white font-bold rounded-md'>
                 Login
               </button></Link>
               

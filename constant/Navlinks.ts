@@ -41,12 +41,14 @@ export const NAVLINKS = [
     id: 4,
     label: "Add Course",
     url: "/courses/add-course",
+    private:true,
   },
 
   {
     id: 5,
     label: "Manage Courses",
     url: "/courses/manage-courses",
+    private:true,
   },
 
 
