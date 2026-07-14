@@ -1,15 +1,70 @@
+"use client";
+import { authClient } from "@/lib/auth-client";
+import { RegisterUser } from "@/types/RegisterUser";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const Register = () => {
+  const formSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const user = Object.fromEntries(
+      formData.entries(),
+    ) as unknown as RegisterUser;
+
+    //Form validation
+    if (!user.name || !user.email || !user.password || !user.confirmPassword) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    //Password Validation
+    if (user.password !== user.confirmPassword) {
+      toast.error("Password does not match");
+      return;
+    }
+
+    // Name Field Validation
+    if (user.name.trim().length < 3) {
+      toast.error("Name must be at least 3 characters");
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(user.email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    //password validation
+    if (user.password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
+
+    const { data, error } = await authClient.signUp.email({
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      callbackURL: "/auth/signin"
+    });
+
+    if(error){
+      toast.error("Account Is not created");
+      return;
+    }
+
+    toast.success("Account created Successfully");
+  };
+
   return (
     <section className="min-h-screen  flex items-center justify-center bg-gray-50 px-4 py-35">
       <div className="w-full max-w-md rounded-2xl bg-white shadow-xl p-8">
         {/* Heading */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-800">
-            Create Account
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-800">Create Account</h1>
 
           <p className="mt-2 text-gray-500">
             Join NextSkill and start your learning journey.
@@ -17,7 +72,7 @@ const Register = () => {
         </div>
 
         {/* Form */}
-        <form className="mt-8 space-y-5">
+        <form onSubmit={formSubmit} className="mt-8 space-y-5">
           {/* Full Name */}
           <div>
             <label className="mb-2 block text-sm font-semibold text-gray-700">

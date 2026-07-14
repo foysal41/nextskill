@@ -1,7 +1,37 @@
+'use client'
+import { authClient } from "@/lib/auth-client";
+import { LoginUser } from "@/types/LoginUser";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const formSubmit = async(e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const user = Object.fromEntries(formData.entries()) as unknown as LoginUser;
+
+    //Form validation
+    if (!user.email || !user.password ) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    const {data, error} = await authClient.signIn.email({
+       email: user.email,
+        password: user.password,
+        callbackURL: "/"
+    })
+
+    if(error){
+        toast.error("Account is not create");
+        return;
+    }
+
+    toast.success("Account Login Successfully");
+    
+  }
+
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-20">
       <div className="w-full max-w-md rounded-2xl bg-white shadow-xl p-8">
@@ -17,7 +47,7 @@ const Login = () => {
         </div>
 
         {/* Form */}
-        <form className="mt-8 space-y-5">
+        <form onSubmit={formSubmit} className="mt-8 space-y-5">
           {/* Email */}
           <div>
             <label className="mb-2 block text-sm font-semibold text-gray-700">
