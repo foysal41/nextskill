@@ -6,21 +6,25 @@ import Link from 'next/link';
 import { NAVLINKS } from '../../../../../constant/Navlinks';
 import avatar from "@/images/avatar.webp"
 import { HiBars3BottomRight } from 'react-icons/hi2'
+import { signOut, useSession } from '@/lib/auth-client';
+
 
 
 interface NavProps {
   openNav: () => void;
 }
 
-const user = {
-  id: 1,
-  name: "John Doe",
-  image: avatar, 
-};
+
 
 export const Navbar = ({openNav}:NavProps):React.ReactElement => {
-  const [navBg, setNavBg] = useState<boolean>(false)
 
+  const [navBg, setNavBg] = useState<boolean>(false)
+  const {data:session, isPending} = useSession()
+  const user = session?.user
+
+const handleLogout = async () => {
+  await signOut()
+}
  useEffect(() => {
   const handleScroll = () => {
     if(window.scrollY > 80) {
@@ -56,8 +60,8 @@ export const Navbar = ({openNav}:NavProps):React.ReactElement => {
           <div className='hidden lg:block'>
             {user? (
             <div className='flex items-center justify-between gap-4'>
-              <Image src={user.image} alt={user.name} height={42} width={42} className='rounded-full border-3 border-[#FE7310] object-cover'></Image>
-              <button className='bg-[#FE7310] px-6 py-3 text-white font-bold rounded-md'>
+              <Image src={avatar} alt={user.name} height={42} width={42} className='rounded-full border-3 border-[#FE7310] object-cover'></Image>
+              <button onClick={handleLogout} className='bg-[#FE7310] px-6 py-3 text-white font-bold rounded-md'>
                 logout
               </button>
             </div>
