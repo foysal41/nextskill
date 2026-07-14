@@ -7,6 +7,9 @@ import { IoClose } from "react-icons/io5";
 import "react-quill-new/dist/quill.snow.css";
 import { toast } from "react-toastify";
 import { uploadImage } from "@/app/lib/uploadImage";
+import { createCourse } from "@/app/lib/actions/course";
+import { Course } from "@/types/course";
+import { redirect } from "next/navigation";
 
 const AddCourse = () => {
   const [thumbUrl, setThumbUrl] = useState<string>("");
@@ -54,14 +57,34 @@ const AddCourse = () => {
   };
 
   const removeGalleryImage = (index: number) => {
-  setGalleryUrls((prevGallery) =>
-    prevGallery.filter((_, i) => i !== index)
-  );
+    setGalleryUrls((prevGallery) => prevGallery.filter((_, i) => i !== index));
 
-  toast.success("Image removed successfully");
-};
+    toast.success("Image removed successfully");
+  };
 
- 
+  // ......................... Form Submit
+  const formSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+
+    const formData = new FormData(form);
+
+    const courseData = Object.fromEntries(formData.entries());
+
+    const payload = {
+      ...(courseData as unknown as Omit<Course, "thumbnail" | "gallery">),
+      thumbnail: thumbUrl,
+      gallery: galleryUrls,
+    };
+
+    const res = await createCourse(payload);
+    if (res.insertedId) {
+      toast.success("Course Create Successfull!");
+      e.currentTarget.reset();
+      redirect("/");
+    }
+  };
+
   return (
     <section className="mt-24">
       <div className="max-w-[1500px] mx-auto px-[1rem]">
@@ -84,7 +107,11 @@ const AddCourse = () => {
               <span className="font-bold text-xl">Course Information</span>
             </div>
 
-            <form className="space-y-6 mt-5">
+            <form
+              id="course-form"
+              onSubmit={formSubmit}
+              className="space-y-6 mt-5"
+            >
               <div className="space-y-5 md:col-span-2">
                 <div className="space-y-5 md:col-span-2">
                   <div>
@@ -314,6 +341,10 @@ const AddCourse = () => {
                 </div>
                 <div></div>
               </div>
+
+              <button className="text-red-500 cursor-pointer" type="submit">
+                Submit
+              </button>
             </form>
           </div>
 
@@ -383,9 +414,9 @@ const AddCourse = () => {
 
               <div className="rounded-xl bg-white shadow-lg p-5">
                 {/* Heading */}
-                   <h3 className="text-xl font-bold">
+                <h3 className="text-xl font-bold">
                   Course Other Images <span className="text-red-500">*</span>
-                </h3>  
+                </h3>
                 {/* Gallery Preview */}
 
                 {/* Hidden Input */}
@@ -451,6 +482,39 @@ const AddCourse = () => {
                 )}
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Bottom Action Buttons */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t pt-6">
+          {/* Cancel */}
+          <button
+            type="button"
+            className="w-full sm:w-auto rounded-lg border border-gray-300 bg-white px-8 py-3 font-semibold text-gray-700 transition hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+
+          <div className="flex w-full sm:w-auto gap-3">
+            {/* Save Draft */}
+            <button
+              type="button"
+              className="flex-1 sm:flex-none rounded-lg border border-blue-200 bg-blue-50 px-8 py-3 font-semibold text-blue-600 transition hover:bg-blue-100"
+            >
+              Save as Draft
+            </button>
+
+            {/* Publish */}
+            <button
+              type="submit"
+              form="course-form"
+              disabled={isUploading || isGalleryImageUploading}
+              className=" flex-1 sm:flex-none rounded-lg bg-[#FF6B00] cursor-pointer px-8 py-3 font-semibold text-white transition hover:bg-[#e95f00] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isUploading || isGalleryImageUploading
+                ? "Publishing..."
+                : "Publish Course"}
+            </button>
           </div>
         </div>
       </div>
