@@ -1,8 +1,9 @@
-import { Course } from "@/types/course";
+import { AllCourse } from "@/types/course";
+
 
 const serverURL = process.env.NEXT_SERVER_URL;
 
-export const getCourses = async():Promise<Course[]> => {
+export const getCourses = async():Promise<AllCourse[]> => {
     const res = await fetch(`${serverURL}/api/courses` , {
         cache: 'no-cache',
     })

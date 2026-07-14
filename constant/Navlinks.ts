@@ -7,7 +7,7 @@ export const NAVLINKS = [
 
   {
     id: 2,
-    label: "Explore",
+    label: "All Courses",
     url: "/explore",
     submenu: [
       {
