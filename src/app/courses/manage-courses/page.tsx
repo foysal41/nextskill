@@ -6,12 +6,12 @@ import {
   FiTrash2,
 } from "react-icons/fi";
 import { getCourses } from '@/app/lib/api/getCourses';
-import { Course } from '@/types/course';
+import { AllCourse } from '@/types/course';
 
 
 
 const ManageCourses = async() => {
-  const courses: Course[] = await getCourses();
+  const courses: AllCourse[] = await getCourses();
   return (
    <section className="mt-24">
     <div className="max-w-[1500px] mx-auto px-[1rem]">
@@ -29,7 +29,7 @@ const ManageCourses = async() => {
         </thead>
 
         <tbody>
-          {courses.map((course:Course, idx) => (
+          {courses.map((course:AllCourse, idx) => (
             <tr
               key={idx}
               className=" hover:bg-gray-50 transition"
