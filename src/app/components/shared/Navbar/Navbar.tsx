@@ -75,11 +75,11 @@ const handleLogout = async () => {
             </div>
           ) : (
             <div className='flex items-center justify-between gap-3'>
-              <Link href={"/auth/signup"}><button className='bg-transprent border cursor-pointer border-[#FE7310] px-6 py-3 text-[#FE7310] font-bold rounded-md'>
+              <Link href={"/auth/register"}><button className='bg-transprent border cursor-pointer border-[#FE7310] px-6 py-3 text-[#FE7310] font-bold rounded-md'>
                 SignUp
               </button></Link>
 
-              <Link href={"auth/login"}><button className='bg-[#FE7310] px-6 py-3 cursor-pointer text-white font-bold rounded-md'>
+              <Link href={"/auth/login"}><button className='bg-[#FE7310] px-6 py-3 cursor-pointer text-white font-bold rounded-md'>
                 Login
               </button></Link>
               
