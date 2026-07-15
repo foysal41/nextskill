@@ -5,9 +5,10 @@ import { getCourses } from "../lib/api/getCourses";
 import { AllCourse } from "@/types/course";
 
 
+
 const ExplorePage = async() => {
   const courses : AllCourse[] = await getCourses()
- 
+  
  
   return (
     <section className="pt-32 pb-20 bg-gray-50 min-h-screen">
