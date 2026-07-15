@@ -21,31 +21,17 @@ export const NAVLINKS = [
     ],
   },
 
-  {
-    id: 3,
-    label: "Categories",
-    url: "/categories",
-    submenu: [
-      {
-        label: "Web Development",
-        url: "/categories/web-development",
-      },
-      {
-        label: "UI/UX Design",
-        url: "/categories/ui-ux",
-      },
-    ],
-  },
+
 
   {
-    id: 4,
+    id: 3,
     label: "Add Course",
     url: "/courses/add-course",
     private:true,
   },
 
   {
-    id: 5,
+    id: 4,
     label: "Manage Courses",
     url: "/courses/manage-courses",
     private:true,
@@ -54,13 +40,13 @@ export const NAVLINKS = [
 
 
   {
-    id: 6,
+    id: 5,
     label: "About",
     url: "/about",
   },
 
   {
-    id: 7,
+    id: 6,
     label: "Contact",
     url: "/contact",
   },
