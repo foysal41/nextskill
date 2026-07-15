@@ -1,36 +1,146 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextSkill LMS
 
-## Getting Started
+## Overview
 
-First, run the development server:
+NextSkill is a modern Learning Management System (LMS) built with
+Next.js, TypeScript, Express.js, MongoDB, Better Auth.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Frontend
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-   Next.js (App Router)
+-   TypeScript
+-   Tailwind CSS
+-   Better Auth Client
+-   React Toastify
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Live URL: https://nextskill-beta.vercel.app/
+### Server URL: nextskill-server.vercel.app
 
-## Learn More
+### Backend
 
-To learn more about Next.js, take a look at the following resources:
+-   Express.js
+-   MongoDB
+-   Better Auth
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Features
 
-## Deploy on Vercel
+-   Authentication (Register, Login, Logout)
+-   Protected Routes
+-   Add & Manage Courses
+-   Explore Courses
+-   Course Details
+-   Search & Filter
+-   Enrollment System
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Course API Endpoints
+| Method   | Endpoint             | Description                      |
+| -------- | -------------------- | -------------------------------- |
+| **POST** | `/api/add-course`    | Add a new course to the database |
+| **GET**  | `/api/courses`       | Retrieve all available courses   |
+| **GET**  | `/api/filtercourses` | Search, filter, and sort courses |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Future Improvements
+
+-   Wishlist
+-   Reviews
+-   Instructor Dashboard
+-   Admin Dashboard
+-   Certificates
+-   Progress Tracking
+
+## 🚀 Future Features
+ - Student Dashboard
+ - My Learning Page
+ - Enrolled Courses
+ - Continue Learning
+ - Course Progress Tracking
+ - Course Completion Certificate (PDF)
+ - Course Wishlist
+ - Download Resources
+ - Notes Taking System
+ - Course Discussion Forum
+ - Course Reviews & Ratings
+ - Course Completion Badge
+ - Learning Streak System
+## 👨‍🏫 Instructor Features
+ - Instructor Dashboard
+ - Instructor Profile
+ - Create Multiple Lessons
+ - Upload Course Videos
+ - Upload PDFs & Resources
+ - Quiz Management
+ - Assignment Management
+ - Student Progress Monitoring
+ - Earnings Dashboard
+ - Course Analytics
+## 👨‍💼 Admin Features
+ - Admin Dashboard
+ - User Management
+ - Instructor Approval System
+ - Course Approval System
+ - Manage Categories
+ - Manage Payments
+ - Revenue Analytics
+ - Platform Statistics
+ - Contact Message Management
+ - Reported Course Management
+## 💳 Payment Features
+ -Stripe Payment Integration
+ -Payment History
+ -Invoice Generation
+ -Coupon & Discount System
+ -Referral Discount
+ -Subscription Plans
+ -Refund Management
+## 📚 Course Features
+ - Course Curriculum
+ - Multi-section Lessons
+ - Video Streaming
+ - Embedded YouTube/Vimeo Support
+ - Live Classes (Zoom/Google Meet)
+ - Downloadable Resources
+ - Prerequisite Courses
+ - Related Courses
+ - Recently Viewed Courses
+##  📊 Analytics
+ - Student Learning Analytics
+ - Course Completion Analytics
+ - Sales Dashboard
+ - Monthly Revenue Report
+ - User Growth Chart
+ - Most Popular Courses
+## 🔔 Notifications
+ - Email Verification
+ - Password Reset
+ - Email Notifications
+ - Course Purchase Confirmation
+ - Assignment Reminder
+ - Push Notifications
+## 🤖 AI Features
+ - AI Course Recommendation
+ - AI Learning Assistant
+ - AI Quiz Generator
+ - AI Course Summary
+ - AI Chat Support
+## 🌐 General Features
+ - Blog System
+ - FAQ Page
+ - Terms & Conditions
+ - Privacy Policy
+ - Newsletter Subscription
+ - Social Login (Google, GitHub)
+ - SEO Optimization
+ - Image Optimization
+
+## Author
+Foysal Jaman
+
+GitHub: https://github.com/foysal41
+
+Email: mdfoysal.mf33@gmail.com
+
+
