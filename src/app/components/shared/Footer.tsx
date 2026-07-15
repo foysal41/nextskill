@@ -43,10 +43,9 @@ export const Footer = (): React.ReactElement => {
             </h3>
 
             <ul className="space-y-3 text-gray-400">
-              <li><Link href="/">About Us</Link></li>
-              <li><Link href="/">Courses</Link></li>
-              <li><Link href="/">Blog</Link></li>
-              <li><Link href="/">Contact</Link></li>
+              <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/explore">Courses</Link></li>            
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
 
