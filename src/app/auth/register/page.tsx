@@ -48,7 +48,7 @@ const Register = () => {
       name: user.name,
       email: user.email,
       password: user.password,
-      callbackURL: "/auth/signin"
+      callbackURL: "/"
     });
 
     if(error){

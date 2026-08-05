@@ -1,6 +1,8 @@
 
 
+import dns from "node:dns";
 
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
@@ -16,6 +18,10 @@ export const auth = betterAuth({
     emailAndPassword: { 
     enabled: true, 
   }, 
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://nextskill-three.vercel.app",
+  ],
 
   database: mongodbAdapter(db, {
     // Optional: if you don't provide a client, database transactions won't be enabled.

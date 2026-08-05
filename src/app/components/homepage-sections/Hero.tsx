@@ -5,10 +5,10 @@ import Image from "next/image";
 
 export const Hero = (): React.ReactElement => {
   return (
-    <section className=" h-[70vh] flex items-center max-w-[1500px] mx-auto px-[1rem] ">
+    <section className=" h-[70vh] flex items-center max-w-375 mx-auto px-[1rem] ">
       <div className=" flex flex-col md:flex-row  items-center ">
         {/* left content */}
-        <div className="">
+        <div className="mt-30">
           <h1 className="text-2xl md:text-6xl font-extrabold leading-tight text-slate-900">
             Learn Smarter.
             <br />
