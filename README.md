@@ -15,8 +15,8 @@ Next.js, TypeScript, Express.js, MongoDB, Better Auth.
 -   Better Auth Client
 -   React Toastify
 
-### Live URL: https://nextskill-beta.vercel.app/
-### Server URL: nextskill-server.vercel.app
+### Live URL: https://nextskill-three.vercel.app/
+### Server URL: https://nextskill-server.vercel.app
 
 ### Backend
 
