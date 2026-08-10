@@ -14,9 +14,9 @@ const ManageCourses = async() => {
   const courses: AllCourse[] = await getCourses();
   return (
    <section className="mt-24">
-    <div className="max-w-[1500px] mx-auto px-[1rem]">
+    <div className="max-w-375 mx-auto px-4">
        <div className="mt-8 rounded-xl bg-white shadow-lg overflow-x-auto">
-      <table className="w-full min-w-[1000px]">
+      <table className="w-full min-w-250">
         <thead className="bg-gray-100">
           <tr className="text-left">
             <th className="px-6 py-4">Thumbnail</th>

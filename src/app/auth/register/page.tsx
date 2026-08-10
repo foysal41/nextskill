@@ -50,6 +50,8 @@ const Register = () => {
       password: user.password,
       callbackURL: "/"
     });
+    console.log("signup data:" , data)
+    console.log("Signup error: " , error)
 
     if(error){
       toast.error("Account Is not created");

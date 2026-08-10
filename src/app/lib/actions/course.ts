@@ -12,7 +12,7 @@ export const createCourse = async(newCourseData:Course) => {
         body:JSON.stringify(newCourseData),
     });
 
-    // console.log('status', res.status)
+    console.log('status', res.status)
 
     return res.json();
 }

@@ -3,8 +3,8 @@ import contactImage from "@/images/about-story.jpg";
 
 const ContactHero = (): React.ReactElement => {
   return (
-    <section className="bg-gradient-to-r from-orange-50 via-white to-blue-50 pt-25 md:pt-35 pb-20">
-      <div className="max-w-[1500px] mx-auto px-[1rem]">
+    <section className="bg-linear-to-r from-orange-50 via-white to-blue-50 pt-25 md:pt-35 pb-20">
+      <div className="max-w-375 mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
           {/* Left Side */}
           <div>
