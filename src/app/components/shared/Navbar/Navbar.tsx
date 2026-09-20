@@ -21,7 +21,6 @@ export const Navbar = ({openNav}:NavProps):React.ReactElement => {
   const user = session?.user
 
 
-
    const filteredLinks = NAVLINKS.filter((link) => {
   if (link.private && !user) return false;
   return true;
@@ -50,7 +49,7 @@ const handleLogout = async () => {
 
   return (
     <header className={`fixed top-0 left-0 z-50 md:h-[12vh] w-full transition-all ${navBg?"bg-white shadow-md" : "bg-transparent"} `}>
-      <div className='flex items-center justify-between gap-3 max-w-[1500px] mx-auto my-[1rem] md:my-[2rem] px-[1rem] '>
+      <div className='flex items-center justify-between gap-3 max-w-375 mx-auto my-4 md:my-8 px-4 '>
         <div className=''>
             <Link href={'/'}><Image src={logo} alt='NextSkill_Logo' height={100} width={100} className='cursor-pointer md:w-50 '></Image></Link>
         </div>
@@ -58,7 +57,7 @@ const handleLogout = async () => {
         {/* Desktop Navigation */}
         <nav className='hidden lg:flex space-x-5 '>
           {filteredLinks.map((link) => (
-            <Link key={link.id} href={link.url} className='relative text-gray-700 transition-all duration-300 hover:text-[#FE710D] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#FE710D] after:transition-all after:duration-300 hover:after:w-full '> {link.label}</Link>
+            <Link key={link.id} href={link.url} className='relative text-gray-700 transition-all duration-300 hover:text-[#FE710D] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-[#FE710D] after:transition-all after:duration-300 hover:after:w-full '> {link.label}</Link>
           ))}
         </nav>
 

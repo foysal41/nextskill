@@ -8,11 +8,12 @@ import { AllCourse } from "@/types/course";
 
 const ExplorePage = async() => {
   const courses : AllCourse[] = await getCourses()
+  console.log(courses)
   
  
   return (
     <section className="pt-32 pb-20 bg-gray-50 min-h-screen">
-      <div className="max-w-[1500px] mx-auto px-4">
+      <div className="max-w-375 mx-auto px-4">
         {/* Heading */}
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900">

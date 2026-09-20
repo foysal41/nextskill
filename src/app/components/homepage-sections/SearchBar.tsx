@@ -11,8 +11,8 @@ export const SearchBar = (): React.ReactElement => {
 
 
   return (
-    <section className="px-[1rem]">
-      <div className="max-w-[1500px] mx-auto bg-white shadow-lg rounded-2xl p-4 ">
+    <section className="px-4">
+      <div className="max-w-375 mx-auto bg-white shadow-lg rounded-2xl p-4 ">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-5 ">
           {/* Search */}
           <input
