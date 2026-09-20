@@ -3,6 +3,7 @@ dns.setServers(["8.8.8.8", "1.1.1.1"]);
 import Image from "next/image";
 import { getCourses } from "@/app/lib/api/getCourses";
 import { notFound } from "next/navigation";
+import EnrollButton from "@/app/components/EntrollButton";
 
 interface Props {
   params: Promise<{
@@ -141,9 +142,11 @@ const CourseDetailsPage = async ({ params }: Props) => {
                 ${course.price}
               </p>
 
-              <button className="mt-8 w-full py-4 rounded-xl bg-[#FE7310] text-white font-bold hover:bg-orange-600 transition">
+              {/* <button className="mt-8 w-full py-4 rounded-xl bg-[#FE7310] text-white font-bold hover:bg-orange-600 transition">
                 Enroll Now
-              </button>
+              </button> */}
+
+              <EnrollButton courseId = {course._id}></EnrollButton>
 
               <hr className="my-8" />
 

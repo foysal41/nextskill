@@ -4,8 +4,12 @@ import { RegisterUser } from "@/types/RegisterUser";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
+import { useSearchParams } from "next/navigation";
 
 const Register = () => {
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/";
+
   const formSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -48,7 +52,7 @@ const Register = () => {
       name: user.name,
       email: user.email,
       password: user.password,
-      callbackURL: "/"
+      callbackURL: redirect,
     });
     console.log("signup data:" , data)
     console.log("Signup error: " , error)
@@ -159,7 +163,7 @@ const Register = () => {
         <p className="mt-6 text-center text-gray-600">
           Already have an account?{" "}
           <Link
-            href="/auth/login"
+            href={`/auth/login?redirect=${encodeURIComponent(redirect)}`}
             className="font-semibold text-orange-500 hover:underline"
           >
             Login

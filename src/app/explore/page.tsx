@@ -8,7 +8,7 @@ import { AllCourse } from "@/types/course";
 
 const ExplorePage = async() => {
   const courses : AllCourse[] = await getCourses()
-  console.log(courses)
+ 
   
  
   return (

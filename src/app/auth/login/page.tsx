@@ -4,8 +4,12 @@ import { LoginUser } from "@/types/LoginUser";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
+import { useSearchParams } from "next/navigation";
 
 const Login = () => {
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/";
+
   const formSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -20,7 +24,7 @@ const Login = () => {
     const { data, error } = await authClient.signIn.email({
       email: user.email,
       password: user.password,
-      callbackURL: "/",
+      callbackURL: redirect,
     });
 
     if (error) {
@@ -119,7 +123,7 @@ const Login = () => {
         <p className="mt-6 text-center text-gray-600">
           Dont have an account?{" "}
           <Link
-            href="/auth/register"
+            href={`/auth/register?redirect=${encodeURIComponent(redirect)}`}
             className="font-semibold text-orange-500 hover:underline"
           >
             Create Account
