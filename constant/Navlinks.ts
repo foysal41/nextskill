@@ -47,7 +47,13 @@ export const NAVLINKS = [
 
   {
     id: 6,
-    label: "Contact",
+    label: "Find Job",
+    url: "/jobs",
+   
+  },
+   {
+    id: 7,
+     label: "Contact",
     url: "/contact",
   },
 ];

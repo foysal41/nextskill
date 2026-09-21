@@ -20,6 +20,7 @@ export const config = {
   matcher: [
     "/dashboard/:path*",
     "/courses/add-course/:path*",
-    "/courses/manage-courses/:path*"
+    "/courses/manage-courses/:path*",
+    "/jobs/:path*",
   ],
 }

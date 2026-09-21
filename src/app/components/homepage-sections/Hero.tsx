@@ -35,6 +35,9 @@ export const Hero = (): React.ReactElement => {
             >
               Become Instructor
             </Link>
+
+
+            
             
           </div>
         </div>
