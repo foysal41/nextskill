@@ -21,8 +21,14 @@ export const Navbar = ({openNav}:NavProps):React.ReactElement => {
   const user = session?.user
 
 
+
    const filteredLinks = NAVLINKS.filter((link) => {
   if (link.private && !user) return false;
+
+
+  if (link.roles && (!user?.role || !link.roles.includes(user.role))) {
+    return false;
+  }
   return true;
 });
 
