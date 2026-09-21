@@ -20,7 +20,7 @@ export const FeaturedCourses = async (): Promise<React.ReactElement> => {
       {/* Course Card */}
       <div className='grid  md:grid-cols-2 lg:grid-cols-4  gap-5'>
 
-        {coursesData?.map((course) => {
+        {coursesData.map((course) => {
           return (
              <div key={course._id} className='bg-white p-2 space-y-2 rounded-md'>
           <Image src={course.thumbnail} alt='course 1' height={250} width={250} className='object-cover h-50 w-full rounded-t-md'></Image>

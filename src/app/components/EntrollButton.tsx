@@ -49,7 +49,13 @@ const EnrollButton = ({
       setLoading(true);
 
       // =====================================
-      // 4. Backend URL
+      // 4. Get User ID
+      // =====================================
+
+      const userId = session.user.id;
+
+      // =====================================
+      // 5. Backend URL
       // =====================================
 
       const serverURL =
@@ -57,7 +63,7 @@ const EnrollButton = ({
         "http://localhost:5000";
 
       // =====================================
-      // 5. Create Stripe Checkout Session
+      // 6. Create Stripe Checkout Session
       // =====================================
 
       const response = await fetch(
@@ -71,12 +77,13 @@ const EnrollButton = ({
 
           body: JSON.stringify({
             courseId,
+            userId,
           }),
         }
       );
 
       // =====================================
-      // 6. Read Backend Response
+      // 7. Read Backend Response
       // =====================================
 
       const responseText =
@@ -98,7 +105,7 @@ const EnrollButton = ({
       }
 
       // =====================================
-      // 7. Handle Backend Error
+      // 8. Handle Backend Error
       // =====================================
 
       if (!response.ok) {
@@ -109,7 +116,7 @@ const EnrollButton = ({
       }
 
       // =====================================
-      // 8. Check Stripe Checkout URL
+      // 9. Check Stripe Checkout URL
       // =====================================
 
       if (!data.checkoutUrl) {
@@ -119,7 +126,7 @@ const EnrollButton = ({
       }
 
       // =====================================
-      // 9. Redirect to Stripe Checkout
+      // 10. Redirect to Stripe Checkout
       // =====================================
 
       window.location.href =
