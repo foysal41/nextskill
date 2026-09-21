@@ -14,33 +14,35 @@ if (!process.env.AUTH_DB_NAME) {
   throw new Error("AUTH_DB_NAME is missing");
 }
 
-const client = new MongoClient(process.env.MONGO_DB_URI);
+// =====================================
+// MongoDB Client
+// =====================================
 
-const db = client.db(process.env.AUTH_DB_NAME);
+const client = new MongoClient(
+  process.env.MONGO_DB_URI,
+  {
+    maxPoolSize: 10,
+    serverSelectionTimeoutMS: 10000,
+  }
+);
 
-// console.log("MONGO URI EXISTS:", !!process.env.MONGO_DB_URI);
-// console.log("AUTH DB NAME:", process.env.AUTH_DB_NAME);
+const db = client.db(
+  process.env.AUTH_DB_NAME
+);
 
-client
-  .connect()
-  .then(async () => {
-    await db.command({ ping: 1 });
-    // console.log("✅ MONGODB CONNECTED");
-    // console.log("✅ DATABASE:", db.databaseName);
-  })
-  .catch((error) => {
-    console.error("❌ MONGODB CONNECTION ERROR:");
-    console.error(error);
-  });
+// =====================================
+// Better Auth
+// =====================================
 
 export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
 
-   // ==============================
+  // ==============================
   // USER ROLES
   // ==============================
+
   user: {
     additionalFields: {
       role: {
@@ -52,10 +54,18 @@ export const auth = betterAuth({
     },
   },
 
+  // ==============================
+  // TRUSTED ORIGINS
+  // ==============================
+
   trustedOrigins: [
     "http://localhost:3000",
     "https://nextskill-three.vercel.app",
   ],
+
+  // ==============================
+  // DATABASE
+  // ==============================
 
   database: mongodbAdapter(db, {
     client,

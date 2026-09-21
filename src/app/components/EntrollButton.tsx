@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 
 interface EnrollButtonProps {
@@ -17,15 +17,17 @@ const EnrollButton = ({
 
   const handleEnroll = async () => {
     try {
+      setLoading(true);
+
       // =====================================
-      // 1. Check Authentication
+      // Check Authentication
       // =====================================
 
       const { data: session } =
         await authClient.getSession();
 
       // =====================================
-      // 2. User is NOT Logged In
+      // Not Logged In
       // =====================================
 
       if (!session?.user) {
@@ -43,95 +45,12 @@ const EnrollButton = ({
       }
 
       // =====================================
-      // 3. User is Logged In
+      // Go To Checkout
       // =====================================
 
-      setLoading(true);
-
-      // =====================================
-      // 4. Get User ID
-      // =====================================
-
-      const userId = session.user.id;
-
-      // =====================================
-      // 5. Backend URL
-      // =====================================
-
-      const serverURL =
-        process.env.NEXT_PUBLIC_SERVER_URL ||
-        "http://localhost:5000";
-
-      // =====================================
-      // 6. Create Stripe Checkout Session
-      // =====================================
-
-      const response = await fetch(
-        `${serverURL}/api/create-checkout-session`,
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            courseId,
-            userId,
-          }),
-        }
+      router.push(
+        `/checkout?courseId=${courseId}`
       );
-
-      // =====================================
-      // 7. Read Backend Response
-      // =====================================
-
-      const responseText =
-        await response.text();
-
-      let data;
-
-      try {
-        data = JSON.parse(responseText);
-      } catch {
-        console.error(
-          "Invalid backend response:",
-          responseText
-        );
-
-        throw new Error(
-          "Server returned an invalid response."
-        );
-      }
-
-      // =====================================
-      // 8. Handle Backend Error
-      // =====================================
-
-      if (!response.ok) {
-        throw new Error(
-          data.message ||
-            "Failed to create checkout session."
-        );
-      }
-
-      // =====================================
-      // 9. Check Stripe Checkout URL
-      // =====================================
-
-      if (!data.checkoutUrl) {
-        throw new Error(
-          "Stripe checkout URL was not returned."
-        );
-      }
-
-      // =====================================
-      // 10. Redirect to Stripe Checkout
-      // =====================================
-
-      window.location.href =
-        data.checkoutUrl;
-
     } catch (error) {
       console.error(
         "Enrollment error:",
@@ -148,10 +67,6 @@ const EnrollButton = ({
     }
   };
 
-  // =====================================
-  // Button UI
-  // =====================================
-
   return (
     <button
       type="button"
@@ -160,7 +75,7 @@ const EnrollButton = ({
       className="mt-8 w-full py-4 rounded-xl bg-[#FE7310] text-white font-bold hover:bg-orange-600 transition disabled:opacity-60 disabled:cursor-not-allowed"
     >
       {loading
-        ? "Redirecting..."
+        ? "Preparing..."
         : "Enroll Now"}
     </button>
   );

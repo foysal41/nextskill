@@ -14,18 +14,18 @@ const CheckoutForm = () => {
   useEffect(() => {
     const startCheckout = async () => {
       try {
-        // --------------------------------
+        // =====================================
         // 1. Check Course ID
-        // --------------------------------
+        // =====================================
 
         if (!courseId) {
           setError("Course ID is missing.");
           return;
         }
 
-        // --------------------------------
+        // =====================================
         // 2. Check Authentication
-        // --------------------------------
+        // =====================================
 
         const { data: session } =
           await authClient.getSession();
@@ -41,17 +41,31 @@ const CheckoutForm = () => {
           return;
         }
 
-        // --------------------------------
-        // 3. Backend URL
-        // --------------------------------
+        // =====================================
+        // 3. Get User ID
+        // =====================================
+
+        const userId = session.user.id;
+
+        if (!userId) {
+          setError(
+            "User ID is missing. Please login again."
+          );
+
+          return;
+        }
+
+        // =====================================
+        // 4. Backend URL
+        // =====================================
 
         const serverURL =
           process.env.NEXT_PUBLIC_SERVER_URL ||
           "http://localhost:5000";
 
-        // --------------------------------
-        // 4. Create Stripe Checkout Session
-        // --------------------------------
+        // =====================================
+        // 5. Create Stripe Checkout Session
+        // =====================================
 
         const response = await fetch(
           `${serverURL}/api/create-checkout-session`,
@@ -64,13 +78,14 @@ const CheckoutForm = () => {
 
             body: JSON.stringify({
               courseId,
+              userId,
             }),
           }
         );
 
-        // --------------------------------
-        // 5. Read Response
-        // --------------------------------
+        // =====================================
+        // 6. Read Response
+        // =====================================
 
         const responseText =
           await response.text();
@@ -90,9 +105,9 @@ const CheckoutForm = () => {
           );
         }
 
-        // --------------------------------
-        // 6. Backend Error
-        // --------------------------------
+        // =====================================
+        // 7. Backend Error
+        // =====================================
 
         if (!response.ok) {
           throw new Error(
@@ -101,9 +116,9 @@ const CheckoutForm = () => {
           );
         }
 
-        // --------------------------------
-        // 7. Stripe URL
-        // --------------------------------
+        // =====================================
+        // 8. Stripe URL
+        // =====================================
 
         if (!data.checkoutUrl) {
           throw new Error(
@@ -111,13 +126,12 @@ const CheckoutForm = () => {
           );
         }
 
-        // --------------------------------
-        // 8. Redirect to Stripe
-        // --------------------------------
+        // =====================================
+        // 9. Redirect to Stripe
+        // =====================================
 
         window.location.href =
           data.checkoutUrl;
-
       } catch (error) {
         console.error(
           "Checkout error:",
@@ -135,15 +149,14 @@ const CheckoutForm = () => {
     startCheckout();
   }, [courseId]);
 
-  // --------------------------------
+  // =====================================
   // Error UI
-  // --------------------------------
+  // =====================================
 
   if (error) {
     return (
       <section className="min-h-screen flex items-center justify-center px-4">
         <div className="max-w-md text-center">
-
           <h1 className="text-2xl font-bold text-red-500">
             Checkout Error
           </h1>
@@ -151,20 +164,18 @@ const CheckoutForm = () => {
           <p className="mt-3 text-gray-600">
             {error}
           </p>
-
         </div>
       </section>
     );
   }
 
-  // --------------------------------
+  // =====================================
   // Loading UI
-  // --------------------------------
+  // =====================================
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4">
       <div className="text-center">
-
         <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
 
         <h1 className="mt-6 text-2xl font-bold text-gray-800">
@@ -174,7 +185,6 @@ const CheckoutForm = () => {
         <p className="mt-2 text-gray-500">
           You will be redirected to Stripe shortly.
         </p>
-
       </div>
     </section>
   );
