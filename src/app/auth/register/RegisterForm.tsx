@@ -101,6 +101,7 @@ const RegisterForm = () => {
         name: user.name,
         email: user.email,
         password: user.password,
+        role: user.role,
         callbackURL: redirect,
       });
 
@@ -130,12 +131,9 @@ const RegisterForm = () => {
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-35">
       <div className="w-full max-w-md rounded-2xl bg-white shadow-xl p-8">
-
         {/* Heading */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-800">
-            Create Account
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-800">Create Account</h1>
 
           <p className="mt-2 text-gray-500">
             Join NextSkill and start your learning journey.
@@ -143,10 +141,7 @@ const RegisterForm = () => {
         </div>
 
         {/* Form */}
-        <form
-          onSubmit={formSubmit}
-          className="mt-8 space-y-5"
-        >
+        <form onSubmit={formSubmit} className="mt-8 space-y-5">
           {/* Full Name */}
           <div>
             <label className="mb-2 block text-sm font-semibold text-gray-700">
@@ -203,6 +198,23 @@ const RegisterForm = () => {
             />
           </div>
 
+          {/* Role */}
+          <div>
+            <label className="mb-2 block text-sm font-semibold text-gray-700">
+              Account Type
+            </label>
+
+            <select
+              name="role"
+              defaultValue="student"
+              className="h-12 w-full rounded-lg border border-gray-300 px-4 outline-none focus:border-blue-500"
+            >
+              <option value="student">Student</option>
+
+              <option value="instructor">Instructor</option>
+            </select>
+          </div>
+
           {/* Register Button */}
           <button
             type="submit"
@@ -216,9 +228,7 @@ const RegisterForm = () => {
         <div className="my-6 flex items-center">
           <div className="h-px flex-1 bg-gray-300" />
 
-          <span className="px-4 text-sm text-gray-500">
-            OR
-          </span>
+          <span className="px-4 text-sm text-gray-500">OR</span>
 
           <div className="h-px flex-1 bg-gray-300" />
         </div>
@@ -229,24 +239,19 @@ const RegisterForm = () => {
           className="flex h-12 w-full items-center justify-center gap-3 rounded-lg border border-gray-300 font-medium transition hover:bg-gray-100"
         >
           <FcGoogle size={24} />
-
           Continue with Google
         </button>
 
         {/* Login */}
         <p className="mt-6 text-center text-gray-600">
           Already have an account?{" "}
-
           <Link
-            href={`/auth/login?redirect=${encodeURIComponent(
-              redirect
-            )}`}
+            href={`/auth/login?redirect=${encodeURIComponent(redirect)}`}
             className="font-semibold text-orange-500 hover:underline"
           >
             Login
           </Link>
         </p>
-
       </div>
     </section>
   );

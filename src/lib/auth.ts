@@ -38,6 +38,20 @@ export const auth = betterAuth({
     enabled: true,
   },
 
+   // ==============================
+  // USER ROLES
+  // ==============================
+  user: {
+    additionalFields: {
+      role: {
+        type: ["student", "instructor"],
+        required: false,
+        defaultValue: "student",
+        input: true,
+      },
+    },
+  },
+
   trustedOrigins: [
     "http://localhost:3000",
     "https://nextskill-three.vercel.app",
