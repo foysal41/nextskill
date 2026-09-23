@@ -60,8 +60,9 @@ const CheckoutForm = () => {
         // =====================================
 
         const serverURL =
-          process.env.NEXT_PUBLIC_SERVER_URL ||
-          "http://localhost:5000";
+          process.env.NEXT_SERVER_URL ||
+          "https://nextskill-server.vercel.app";
+
 
         // =====================================
         // 5. Create Stripe Checkout Session
