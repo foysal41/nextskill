@@ -1,7 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 
-import student1 from "@/images/ins-avatar.png"
+import student1 from "@/images/ins-avatar.png";
 
 import { BiStar } from "react-icons/bi";
 
@@ -46,59 +46,92 @@ export const testimonialData: Testimonial[] = [
 
 export const Testimonials = (): React.ReactElement => {
   return (
-    <section className="max-w-[1500px] mx-auto py-[60px] px-4">
-      {/* Heading */}
-      <div className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold">
-          What Our Students Say
-        </h2>
-      </div>
+    <section className="w-full bg-white">
+      <div className="mx-auto max-w-[1500px] px-4 py-12 sm:px-6 sm:py-14 lg:py-16">
+        {/* ================= HEADING ================= */}
 
-      {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {testimonialData.map((testimonial) => (
-          <div
-            key={testimonial.id}
-            className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300"
-          >
-            {/* Top */}
-            <div className="flex items-center gap-1">
-              <Image
-                src={testimonial.image}
-                alt={testimonial.name}
-                width={55}
-                height={55}
-                className="rounded-full object-cover"
-              />
+        <div className="mb-7 flex items-center gap-3">
+          <span className="h-8 w-1.5 rounded-full bg-orange-500" />
 
-              <div>
-                <h3 className="font-bold text-lg">
-                  {testimonial.name}
-                </h3>
+          <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+            Our Students Says
+          </h2>
+        </div>
 
-                <p className="text-sm text-gray-500">
-                  {testimonial.course}
-                </p>
-              </div>
-            </div>
+        {/* ================= TESTIMONIAL CARDS ================= */}
 
-            {/* Rating */}
-            <div className="flex gap-1 my-4">
-              {[...Array(testimonial.rating)].map((_, index) => (
-                <BiStar
-                  key={index}
-                  className="text-yellow-400 fill-yellow-400"
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {testimonialData.map((testimonial) => (
+            <div
+              key={testimonial.id}
+              className="
+                group
+                rounded-xl
+                border
+                border-slate-100
+                bg-white
+                p-6
+                shadow-[0_4px_18px_rgba(15,23,42,0.07)]
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-blue-100
+                hover:shadow-[0_12px_30px_rgba(37,99,235,0.12)]
+                sm:p-7
+              "
+            >
+              {/* ================= STUDENT INFO ================= */}
+
+              <div className="flex items-center gap-4">
+                <Image
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  width={58}
+                  height={58}
+                  className="
+                    h-14
+                    w-14
+                    shrink-0
+                    rounded-full
+                    object-cover
+                    sm:h-16
+                    sm:w-16
+                  "
                 />
-              ))}
-            </div>
 
-            {/* Review */}
-            <p className="text-gray-600 leading-7 italic">
-              {testimonial.review}
-            </p>
-          </div>
-        ))}
+                <div className="min-w-0">
+                  <h3 className="text-base font-bold leading-6 text-slate-900 sm:text-lg">
+                    {testimonial.name}
+                  </h3>
+
+                  <p className="mt-1 text-sm font-medium text-slate-500 sm:text-base">
+                    {testimonial.course}
+                  </p>
+                </div>
+              </div>
+
+              {/* ================= RATING ================= */}
+
+              <div className="my-5 flex gap-1">
+                {[...Array(testimonial.rating)].map((_, index) => (
+                  <BiStar
+                    key={index}
+                    className="h-5 w-5 fill-yellow-400 text-yellow-400"
+                  />
+                ))}
+              </div>
+
+              {/* ================= REVIEW ================= */}
+
+              <p className="text-base leading-7 text-slate-600 italic sm:text-[17px] sm:leading-8">
+                {testimonial.review}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
+
+export default Testimonials;

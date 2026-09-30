@@ -5,6 +5,9 @@ import { FeaturedCourses } from "./components/homepage-sections/FeaturedCourses"
 import Statistics from "./components/homepage-sections/Statistics";
 import { WhyChooseUs } from "./components/homepage-sections/WhyChooseUs";
 import { Testimonials } from "./components/homepage-sections/Testimonials";
+import PopularTechnologies from "./components/homepage-sections/PopularTechnologies";
+import LearningJourney from "./components/homepage-sections/LearningJourney ";
+import FAQ from "./components/homepage-sections/FAQ";
 
 export default function Home() {
   return (
@@ -15,7 +18,10 @@ export default function Home() {
      <FeaturedCourses></FeaturedCourses>
      <Statistics></Statistics>
      <WhyChooseUs></WhyChooseUs>
+     <PopularTechnologies></PopularTechnologies>
+     <LearningJourney></LearningJourney>
      <Testimonials></Testimonials>
+     <FAQ></FAQ>
      
     </div>
   );

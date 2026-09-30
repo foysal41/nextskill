@@ -7,7 +7,6 @@ import {
 } from "react-icons/bi";
 import { FaGraduationCap } from "react-icons/fa6";
 
-
 export interface Stat {
   id: number;
   icon: IconType;
@@ -44,25 +43,126 @@ export const statsData: Stat[] = [
 
 export const Statistics = (): React.ReactElement => {
   return (
-    <section className="max-w-[1500px] mx-auto px-4 -mt-10 relative z-20">
-      <div className="rounded-2xl bg-gradient-to-r from-[#2563EB] via-[#3B82F6] to-[#2563EB] px-6 py-8 shadow-xl">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {statsData.map((stat) => {
+    <section
+      className="
+        relative
+        z-20
+        w-full
+        bg-white
+        px-4
+        -mt-8
+        sm:-mt-10
+      "
+    >
+      <div
+        className="
+          mx-auto
+          max-w-[1500px]
+          overflow-hidden
+          rounded-2xl
+          border
+          border-slate-100
+          bg-white
+          px-5
+          py-7
+          shadow-[0_8px_30px_rgba(15,23,42,0.08)]
+
+          sm:px-8
+          sm:py-8
+
+          md:rounded-3xl
+          md:px-10
+          md:py-9
+
+          lg:px-14
+          lg:py-10
+        "
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+          {statsData.map((stat, index) => {
             const Icon = stat.icon;
 
             return (
               <div
                 key={stat.id}
-                className="flex items-center justify-center gap-4"
-              >
-                <Icon className="text-5xl text-white" />
+                className={`
+                  flex
+                  items-center
+                  justify-center
+                  gap-4
+                  px-4
+                  py-4
 
+                  sm:min-h-[95px]
+                  sm:px-6
+
+                  md:min-h-[40px]
+                  md:px-2
+                  md:py-2
+
+                  ${
+                    index !== 0
+                      ? "border-t border-blue-100 md:border-l md:border-t-0"
+                      : ""
+                  }
+                `}
+              >
+                {/* Icon */}
+                <div
+                  className={`
+                    flex
+                    h-12
+                    w-12
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-xl
+
+                    sm:h-14
+                    sm:w-14
+
+                    ${
+                      stat.id === 3
+                        ? "bg-orange-50 text-orange-500"
+                        : "bg-blue-50 text-blue-600"
+                    }
+                  `}
+                >
+                  <Icon
+                    className="
+                      h-8
+                      w-8
+                      sm:h-9
+                      sm:w-9
+                    "
+                  />
+                </div>
+
+                {/* Text */}
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  <h3
+                    className="
+                      text-xl
+                      font-extrabold
+                      leading-none
+                      text-blue-600
+
+                      sm:text-2xl
+                    "
+                  >
                     {stat.value}
                   </h3>
 
-                  <p className="text-blue-100 text-sm">
+                  <p
+                    className="
+                      mt-1.5
+                      text-xs
+                      font-medium
+                      text-slate-500
+
+                      sm:text-sm
+                    "
+                  >
                     {stat.label}
                   </p>
                 </div>
